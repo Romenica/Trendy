@@ -9,5 +9,5 @@ package trendy.accesoadatos;
  * @author MINEDUCYT
  */
 public class CategoriasDAL {
-    
+   //karen 
 }
