@@ -5,13 +5,23 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<%@page import="trendy.entidadesdenegocio.Producto" %>
+<%@page import="trendy.accesoadatos.ProductoDAL" %>
+<%@page import="java.util.ArrayList" %>
+<%
+    ArrayList<Producto> producto = productoDAL.obtenerTodos();
+    int id = Integer.parseInt(request.getParameter("id"));
+%>
+<select id="slProducto" name="idProducto">
+    <option <%=(id == 0) ? "selected" : ""%> value="0">Seleccionar</option>
+    <% 
+        for(producto Producto:producto)
+        {
+    %>
+    <option <%=(id == producto.getId()) ? "selected" : "" %>
+        value="<%=producto.getId()%>">
+        <%=producto .getNombre()%>
+    </option>
+    <% } %>
+</select>
+<label for="slEmpleados">Producto</label> 
