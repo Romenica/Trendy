@@ -8,7 +8,15 @@ package trendy.accesoadatos;
  *
  * @author MINEDUCYT
  */
+<<<<<<< HEAD
 public class ComunDB 
 {
     
+=======
+import java.sql.*;
+// hola
+public class ComunDB 
+{
+  
+>>>>>>> 1936c07483f3453bd62cc7406f4f28e1821aa4bf
 }

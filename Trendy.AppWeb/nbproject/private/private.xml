@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group name="Trendy"/>
+=======
+        <group name="Trendy">
+<<<<<<< HEAD
+            <file>file:/C:/Users/Linda/OneDrive/Documentos/Trendy/Trendy.AppWeb/web/Views/Descuento/select.jsp</file>
+            <file>file:/C:/Users/Linda/OneDrive/Documentos/Trendy/Trendy.AppWeb/web/Views/Descuento/edit.jsp</file>
+            <file>file:/C:/Users/Linda/OneDrive/Documentos/Trendy/Trendy.AppWeb/web/Views/Descuento/create.jsp</file>
+            <file>file:/C:/Users/Linda/OneDrive/Documentos/Trendy/Trendy.AppWeb/web/Views/Descuento/delete.jsp</file>
+            <file>file:/C:/Users/Linda/OneDrive/Documentos/Trendy/Trendy.AppWeb/web/Views/empleado/index.jsp</file>
+            <file>file:/C:/Users/Linda/OneDrive/Documentos/Trendy/Trendy.AppWeb/web/Views/empleado/create.jsp</file>
+            <file>file:/C:/Users/Linda/OneDrive/Documentos/Trendy/Trendy.AppWeb/web/Views/empleado/select.jsp</file>
+            <file>file:/C:/Users/Linda/OneDrive/Documentos/Trendy/Trendy.AppWeb/web/Views/Descuento/index.jsp</file>
+            <file>file:/C:/Users/Linda/OneDrive/Documentos/Trendy/Trendy.AppWeb/web/Views/empleado/details.jsp</file>
+            <file>file:/C:/Users/Linda/OneDrive/Documentos/Trendy/Trendy.AppWeb/web/Views/empleado/edit.jsp</file>
+            <file>file:/C:/Users/Linda/OneDrive/Documentos/Trendy/Trendy.AppWeb/web/Views/empleado/delete.jsp</file>
+            <file>file:/C:/Users/Linda/OneDrive/Documentos/Trendy/Trendy.AppWeb/web/Views/Descuento/details.jsp</file>
+=======
+            <file>file:/C:/Users/MINEDUCYT/Pictures/Trendy/Trendy.AppWeb/web/Views/Categorias/craete.jsp</file>
+>>>>>>> 9a000aa86a07b1e25891edaf0d3d948868338dbe
+        </group>
+>>>>>>> 2b3cc9ba3352875d40aa20e7d218483d289d658b
+    </open-files>
 </project-private>
