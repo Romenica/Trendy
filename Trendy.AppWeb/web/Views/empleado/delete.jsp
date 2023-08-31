@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="trendy.entidadesdenegocio.Empleado" %>
 <% 
-    Empleado descuento = (Empleado) request.getAttribute("descuento");
+    Empleado empleado = (Empleado) request.getAttribute("descuento");
 %>
 <!DOCTYPE html>
 <html>

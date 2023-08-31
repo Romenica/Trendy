@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="trendy.entidadesdenegocio.Producto"%>
 <%@page import="java.util.ArrayList" %>
-<%ArrayList<Empleado> empleado= (ArrayList<Descuento>) request.getAttribute("producto");
+<%ArrayList<Producto> producto= (ArrayList<Producto>) request.getAttribute("producto");
     int numPage = 1;
     int numReg = 10;
     int countReg = 0;
