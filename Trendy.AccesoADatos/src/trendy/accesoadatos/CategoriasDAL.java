@@ -16,45 +16,45 @@ public class CategoriasDAL
 {
         static String obtenerCampos()
     {
-        return "r.Id, r.Nombre, r.Apellido, r,Dirección, r.Telefono, r.Cargo";
+        return "r.Id, r.IdProducto, r.NombreCategorias";
     }
     
-    private static String obtenerSelect(Empleado pEMPL)
+    private static String obtenerSelect(Categorias pC)
     {
         String sql;
         sql = "Select ";
-        if(pEMPL.getTop_aux() > 0 && 
+        if(pC.getTop_aux() > 0 && 
            ComunDB.TIPODB == ComunDB.TipoDB.SQLSERVER)
         {
-            sql += "Top " + pEMPL .getTop_aux() + " ";
+            sql += "Top " + pC.getTop_aux() + " ";
         }
-        sql += (obtenerCampos() + " From Empleado r");
+        sql += (obtenerCampos() + " From Categorias r");
         return sql;
     }
     
-    private static String agregarOrderBy(Empleado pEMPL)
+    private static String agregarOrderBy(Categorias pC)
     {
         String sql = " Order by r.Id Desc";
-        if(pEMPL.getTop_aux() > 0 && 
+        if(pC.getTop_aux() > 0 && 
         ComunDB.TIPODB == ComunDB.TipoDB.SQLSERVER)
         {
-            sql += "Limit " + pEMPL.getTop_aux() + " ";
+            sql += "Limit " + pC.getTop_aux() + " ";
         }
         return sql;
     }
     
     
-    public static int crear(Empleado pEMPL) throws Exception
+    public static int crear(Categorias pC) throws Exception
     {
         int result;
         String sql;
         try(Connection conn = ComunDB.obtenerConexion();)
         {
-            sql = "Insert Into Empleado(Nombre) Values(?)";
+            sql = "Insert Into Categorias(NombreCategorias) Values(?)";
             try(PreparedStatement st = 
                 ComunDB.createPreparedStatement(conn, sql);)
             {
-                st.setString(1, pEMPL.getNombre());
+                st.setString(1, pC.getNombreCategoria());
                 result = st.executeUpdate();
                 st.close();
             }
@@ -70,17 +70,17 @@ public class CategoriasDAL
         return result;
     }
     
-    public static int modificar(Empleado pEMPL) throws Exception 
+    public static int modificar(Categorias pC) throws Exception 
     {
         int result;
         String sql;
         try(Connection conn = ComunDB.obtenerConexion();)
         {
-            sql = "Update Empleado Set Nombre = ? Where Id = ?";
+            sql = "Update Categorias Set Nombre = ? Where Id = ?";
             try(PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);)
             {
-                ps.setString(1, pEMPL.getNombre());
-                ps.setInt(2, pEMPL.getId());
+                ps.setString(1, pC.getNombreCategoria());
+                ps.setInt(2, pC.getId());
                 result = ps.executeUpdate();
                 ps.close();
             }
@@ -96,16 +96,16 @@ public class CategoriasDAL
         return result;
     }
     
-    public static int eliminar(Empleado pEMPL) throws Exception
+    public static int eliminar(Categorias pC) throws Exception
     {
         int result;
         String sql;
         try(Connection conn = ComunDB.obtenerConexion();)
         {
-            sql = "Delete From Empleado Where Id = ?";
+            sql = "Delete From Categorias Where Id = ?";
             try(PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);)
             {
-                ps.setInt(1, pEMPL.getId());
+                ps.setInt(1, pC.getId());
                 result = ps.executeUpdate();
                 ps.close();
             }
@@ -121,24 +121,24 @@ public class CategoriasDAL
         return result;
     }
     
-    static int asignarDatosResultSet(Empleado pEMPL, ResultSet pResultSet, int pIndex) throws Exception
+    static int asignarDatosResultSet(Categorias pC, ResultSet pResultSet, int pIndex) throws Exception
     {
         pIndex++;
-        pEMPL.setId(pResultSet.getInt(pIndex));
+        pC.setId(pResultSet.getInt(pIndex));
         pIndex++;
-        pEMPL.setNombre(pResultSet.getString(pIndex));
+        pC.setNombreCategoria(pResultSet.getString(pIndex));
         return pIndex;
     }
     
-    private static void obtenerDatos(PreparedStatement pPS, ArrayList<Empleado> pEMPL) throws Exception
+    private static void obtenerDatos(PreparedStatement pPS, ArrayList<Categorias> pC) throws Exception
     {
         try(ResultSet resultset = ComunDB.obtenerResulSet(pPS);)
         {
             while(resultset.next())
             {
-                Empleado employee = new Empleado();
-                asignarDatosResultSet(employee,resultset,0);
-                pEMPL.add(employee);
+                Categorias category = new Categorias();
+                asignarDatosResultSet(category,resultset,0);
+                pC.add(category);
             }
             resultset.close();
         }
@@ -148,18 +148,18 @@ public class CategoriasDAL
         }
     }
     
-    public static Empleado obtenerPorId(Empleado pEMPL) throws Exception
+    public static Categorias obtenerPorId(Categorias pC) throws Exception
     {
-        Empleado empleoyee = new Empleado();
-        ArrayList<Empleado> empleoyees = new ArrayList();
+        Categorias category = new Categorias();
+        ArrayList<Categorias> categories = new ArrayList();
         try(Connection conn = ComunDB.obtenerConexion();)
         {
-            String sql = obtenerSelect(pEMPL);
+            String sql = obtenerSelect(pC);
             sql += " Where Id = ?";
             try(PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);)
             {
-                ps.setInt(1, pEMPL.getId());
-                obtenerDatos(ps, empleoyees);
+                ps.setInt(1, pC.getId());
+                obtenerDatos(ps, categories);
                 ps.close();
             }
             catch(Exception ex)
@@ -171,24 +171,24 @@ public class CategoriasDAL
         {
             throw ex;
         }
-        if(empleoyees.size() > 0)
+        if(categories.size() > 0)
         {
-            empleoyee = empleoyees.get(0);
+            category = categories.get(0);
         }
-        return empleoyee;
+        return category;
     }
 
-    public static ArrayList<Empleado> obtenerTodos() throws Exception
+    public static ArrayList<Categorias> obtenerTodos() throws Exception
     {
-        Empleado empleoyee = new Empleado();
-        ArrayList<Empleado> empleoyees = new ArrayList();
+        Categorias category = new Categorias();
+        ArrayList<Categorias> categories = new ArrayList();
         try(Connection conn = ComunDB.obtenerConexion();)
         {
-            String sql = obtenerSelect(new Empleado());
-            sql += agregarOrderBy(new Empleado());
+            String sql = obtenerSelect(new Categorias());
+            sql += agregarOrderBy(new Categorias());
             try(PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);)
             {
-                obtenerDatos(ps, empleoyees);
+                obtenerDatos(ps, categories);
                 ps.close();
             }
             catch(Exception ex)
@@ -201,53 +201,53 @@ public class CategoriasDAL
             throw ex;
         }
         
-        return empleoyees;
+        return categories;
     }
     
-    static void querySelect(Empleado pEMPL, ComunDB.UtilQuery pUtilQuery) throws Exception
+    static void querySelect(Categorias pC, ComunDB.UtilQuery pUtilQuery) throws Exception
     {
         PreparedStatement statement = pUtilQuery.getStatement();
-        if(pEMPL.getId() > 0)
+        if(pC.getId() > 0)
         {
             pUtilQuery.AgregarWhereAnd(" r.Id = ? ");
             if(statement != null)
             {
                 statement.setInt(pUtilQuery.getNumWhere(), 
-                        pEMPL.getId());
+                        pC.getId());
             }
         }
         
-        if(pEMPL.getNombre() != null && 
-           pEMPL.getNombre().trim().isEmpty() == false)
+        if(pC.getNombreCategoria() != null && 
+           pC.getNombreCategoria().trim().isEmpty() == false)
         {
             pUtilQuery.AgregarWhereAnd(" r.Nombre Like ? ");
             if(statement != null)
             {
                 statement.setString(pUtilQuery.getNumWhere(), 
-                        "%" + pEMPL.getNombre() + "%");
+                        "%" + pC.getNombreCategoria() + "%");
             }
         }
     }
     
-    public static ArrayList<Empleado> buscar(Empleado pEMPL) throws Exception
+    public static ArrayList<Categorias> buscar(Categorias pC) throws Exception
     {
-        ArrayList<Empleado> employees = new ArrayList();
+        ArrayList<Categorias> categories = new ArrayList();
         try(Connection conn = ComunDB.obtenerConexion();)
         {
-            String sql = obtenerSelect(pEMPL);
+            String sql = obtenerSelect(pC);
             ComunDB comundb = new ComunDB();
             ComunDB.UtilQuery utilQuery = 
             comundb.new UtilQuery(sql,null,0);
-            querySelect(pEMPL, utilQuery);
+            querySelect(pC, utilQuery);
             sql = utilQuery.getSQL();
-            sql += agregarOrderBy(pEMPL);
+            sql += agregarOrderBy(pC);
             try(PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);)
             {
                 utilQuery.setStatement(ps);
                 utilQuery.setSQL(null);
                 utilQuery.setNumWhere(0);
-                querySelect(pEMPL, utilQuery);
-                obtenerDatos(ps, employees);
+                querySelect(pC, utilQuery);
+                obtenerDatos(ps, categories);
                 ps.close();
             }
             catch(Exception ex)
@@ -260,6 +260,6 @@ public class CategoriasDAL
             throw ex;
         }
         
-        return employees; 
+        return categories; 
     }
 }

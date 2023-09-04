@@ -76,7 +76,7 @@ public class DescuentoDAL
         String sql;
         try(Connection conn = ComunDB.obtenerConexion();)
         {
-            sql = "Update Descuento Set Nombre = ? Where Id = ?";
+            sql = "Update Descuento Set Cantidad = ? Where Id = ?";
             try(PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);)
             {
                 ps.setString(1, pDS.getTalla());

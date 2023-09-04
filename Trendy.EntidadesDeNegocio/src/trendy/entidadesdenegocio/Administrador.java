@@ -13,8 +13,7 @@ import java.util.ArrayList;
 
 public class Administrador 
 {
- private int id;
-    private int idRol;
+   private int id;
     private String nombre;
     private String apellido;
     private String login;
@@ -27,9 +26,8 @@ public class Administrador
     public Administrador() {
     }
 
-    public Administrador(int id, int idRol, String nombre, String apellido, String login, String password, byte estatus, LocalDate fechaRegistro, int top_aux, String confirmPassword_aux) {
+    public Administrador(int id, String nombre, String apellido, String login, String password, byte estatus, LocalDate fechaRegistro, int top_aux, String confirmPassword_aux) {
         this.id = id;
-        this.idRol = idRol;
         this.nombre = nombre;
         this.apellido = apellido;
         this.login = login;
@@ -46,14 +44,6 @@ public class Administrador
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getIdRol() {
-        return idRol;
-    }
-
-    public void setIdRol(int idRol) {
-        this.idRol = idRol;
     }
 
     public String getNombre() {
@@ -120,8 +110,7 @@ public class Administrador
         this.confirmPassword_aux = confirmPassword_aux;
     }
     
-    public class EstatusAdministrador
-    {
+    public class EstatusAdministrador{
         public static final byte ACTIVO = 1;
         public static final byte INACTIVO = 2;
     }

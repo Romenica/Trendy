@@ -33,20 +33,102 @@ public class AdministradorServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+   private Administrador obtenerAdministrador(HttpServletRequest request)
+    {
+        String accion = Utilidad.getParameter(request, "accion", "index");
+        Administrador administrador = new Administrador();
+        administrador.setNombre(Utilidad.getParameter(request, "nombre", 
+                ""));
+        administrador.setApellido(Utilidad.getParameter(request, "apellido",
+                ""));
+        administrador.setLogin(Utilidad.getParameter(request, "login",
+                ""));
+        administrador.setEstatus(Byte.parseByte(Utilidad.getParameter(request,
+                "estatus",
+                "0")));
+        if(accion.equals("create") || accion.equals("login") ||
+           accion.equals("cambiarpass"))
+        {
+            //Obtiene el parametro de Id del request y asigna el valor a la propiedad 
+            //Id de la instancia
+            administrador.setPassword(Utilidad.getParameter(request, 
+                    "password",
+                    "0"));
+            administrador.setConfirmPassword_aux(Utilidad.getParameter(request, 
+                    "confirmPassword_aux",
+                    "0"));
+            if(accion.equals("cambiarpass"))
+            {
+                administrador.setId(Integer.parseInt(Utilidad.getParameter(request, 
+                        "id",
+                    "0")));
+            }
+        }
+        else
+        if(accion.equals("index"))
+        {
+            administrador.setTop_aux(Integer.parseInt(Utilidad.getParameter(request, 
+                    "top_aux", "10")));
+            administrador.setTop_aux(administrador.getTop_aux() == 0 ? Integer.MAX_VALUE: administrador.getTop_aux());
+        }
+        else
+        {
+            administrador.setId(Integer.parseInt(Utilidad.getParameter(request, 
+                    "id",
+                    "0")));
+        }
+        return administrador;
+    }
+    
+    protected void doGetRequestIndex(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AdministradorServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AdministradorServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        try
+        {
+            Administrador administrador = new Administrador();
+            administrador.setTop_aux(10);
+            request.setAttribute("administradores", administrador);
+            request.setAttribute("top_aux", administrador.getTop_aux());
+            request.getRequestDispatcher("Views/Administrador/index.jsp")
+                    .forward(request, response);
+        }
+        catch(Exception ex)
+        {
+            Utilidad.enviarError(ex.getMessage(), request, response);
+        }
+    }
+    
+    protected void doPostRequestIndex(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try
+        {
+            Administrador administradores = new Administrador();
+            request.setAttribute("administradores", administradores);
+            request.setAttribute("top_aux", administradores.getTop_aux());
+            request.getRequestDispatcher("Views/Administrador/index.jsp")
+                    .forward(request, response);
+        }
+        catch(Exception ex)
+        {
+            Utilidad.enviarError(ex.getMessage(), request, response);
+        }
+    }
+    
+    protected void doGetRequestLogin(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+            request.getRequestDispatcher("Views/Usuario/login.jsp")
+                    .forward(request, response);
+    }
+    
+    protected void doPostRequestLogin(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try
+        {
+            Administrador administrador = obtenerAdministrador(request);
+            Administrador administrador_auth = AdministradorDAL.login(administrador);//Cambiar esta linea
+        }
+        catch(Exception ex)
+        {
+            request.setAttribute("error", ex.getMessage());
         }
     }
 
@@ -62,7 +144,25 @@ public class AdministradorServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String accion = Utilidad.getParameter(request, "accion", 
+                "index");
+        if(accion.equals("login"))
+        {
+            request.setAttribute("accion", accion);
+            doGetRequestLogin(request,response);
+        }
+        else
+        {
+            SessionUser.authorize(request, response, () -> {
+                switch(accion)
+                {
+                    case "index":
+                        request.setAttribute("accion", accion);
+                        doGetRequestIndex(request, response);
+                        break;
+                }
+            });
+        }
     }
 
     /**
@@ -76,7 +176,25 @@ public class AdministradorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String accion = Utilidad.getParameter(request, "accion", 
+                "index");
+        if(accion.equals("login"))
+        {
+            request.setAttribute("accion", accion);
+            doPostRequestLogin(request,response);
+        }
+        else
+        {
+            SessionUser.authorize(request, response, () -> {
+                switch(accion)
+                {
+                    case "index":
+                        request.setAttribute("accion", accion);
+                        doPostRequestIndex(request, response);
+                        break;
+                }
+            });
+        }
     }
 
     /**

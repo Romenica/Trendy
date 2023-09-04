@@ -12,19 +12,19 @@ import java.util.ArrayList;
 
 public class Descuento 
 {
-private int id;
+ private int id;
  private int idProducto;
- private float cantidad;
- private double precio;
+ private String cantidad;
+ private String precio;
  private String talla;
- private double descuento;
+ private String descuento;
  private int top_aux;
  private ArrayList<Producto> productos;
 
     public Descuento() {
     }
 
-    public Descuento(int id, int idProducto, float cantidad, double precio, String talla, double descuento, int top_aux, ArrayList<Producto> productos) {
+    public Descuento(int id, int idProducto, String cantidad, String precio, String talla, String descuento, int top_aux, ArrayList<Producto> productos) {
         this.id = id;
         this.idProducto = idProducto;
         this.cantidad = cantidad;
@@ -51,19 +51,19 @@ private int id;
         this.idProducto = idProducto;
     }
 
-    public float getCantidad() {
+    public String getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(float cantidad) {
+    public void setCantidad(String cantidad) {
         this.cantidad = cantidad;
     }
 
-    public double getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(String precio) {
         this.precio = precio;
     }
 
@@ -75,11 +75,11 @@ private int id;
         this.talla = talla;
     }
 
-    public double getDescuento() {
+    public String getDescuento() {
         return descuento;
     }
 
-    public void setDescuento(double descuento) {
+    public void setDescuento(String descuento) {
         this.descuento = descuento;
     }
 
@@ -98,4 +98,6 @@ private int id;
     public void setProductos(ArrayList<Producto> productos) {
         this.productos = productos;
     }
+
+   
 }
