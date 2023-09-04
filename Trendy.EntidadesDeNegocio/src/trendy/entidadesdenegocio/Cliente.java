@@ -12,23 +12,27 @@ import java.util.ArrayList;
 
 public class Cliente 
 {
- private int id;
+  private int id;
  private int idEmpleado;
  private String nombre;  
  private String direccion;
  private String telefono;
  private String dui;
+ private int top_aux;
+ private ArrayList<Empleado> empleados;
 
     public Cliente() {
     }
 
-    public Cliente(int id, int idEmpleado, String nombre, String direccion, String telefono, String dui) {
+    public Cliente(int id, int idEmpleado, String nombre, String direccion, String telefono, String dui, int top_aux, ArrayList<Empleado> empleados) {
         this.id = id;
         this.idEmpleado = idEmpleado;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         this.dui = dui;
+        this.top_aux = top_aux;
+        this.empleados = empleados;
     }
 
     public int getId() {
@@ -77,6 +81,22 @@ public class Cliente
 
     public void setDui(String dui) {
         this.dui = dui;
+    }
+
+    public int getTop_aux() {
+        return top_aux;
+    }
+
+    public void setTop_aux(int top_aux) {
+        this.top_aux = top_aux;
+    }
+
+    public ArrayList<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(ArrayList<Empleado> empleados) {
+        this.empleados = empleados;
     }
  
  

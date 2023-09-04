@@ -7,11 +7,19 @@
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
                 <library dirs="200">
-                    <file>${reference.SysSeguridadG04_AccesoADatos.jar}</file>
+                    <file>${file.reference.mssql-jdbc-11.2.3.jre18.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${reference.SysSeguridadG04_EntidadesDeNegocio.jar}</file>
+                    <file>${reference.Trendy_EntidadesDeNegocio.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${reference.Trendy_AccesoADatos.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${libs.jakartaee-web-api-10.0.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
@@ -25,7 +33,7 @@
         </data>
         <references xmlns="http://www.netbeans.org/ns/ant-project-references/1">
             <reference>
-                <foreign-project>SysSeguridadG04_AccesoADatos</foreign-project>
+                <foreign-project>Trendy_AccesoADatos</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
                 <target>jar</target>
@@ -33,7 +41,7 @@
                 <id>jar</id>
             </reference>
             <reference>
-                <foreign-project>SysSeguridadG04_EntidadesDeNegocio</foreign-project>
+                <foreign-project>Trendy_EntidadesDeNegocio</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
                 <target>jar</target>

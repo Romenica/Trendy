@@ -15,14 +15,18 @@ public class Categorias
  private int id;
  private int idProducto;
  private String nombreCategoria;
+ private int top_aux;
+ private ArrayList<Producto> productos;
 
     public Categorias() {
     }
 
-    public Categorias(int id, int idProducto, String nombreCategoria) {
+    public Categorias(int id, int idProducto, String nombreCategoria, int top_aux, ArrayList<Producto> productos) {
         this.id = id;
         this.idProducto = idProducto;
         this.nombreCategoria = nombreCategoria;
+        this.top_aux = top_aux;
+        this.productos = productos;
     }
 
     public int getId() {
@@ -49,5 +53,19 @@ public class Categorias
         this.nombreCategoria = nombreCategoria;
     }
 
- 
+    public int getTop_aux() {
+        return top_aux;
+    }
+
+    public void setTop_aux(int top_aux) {
+        this.top_aux = top_aux;
+    }
+
+    public ArrayList<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(ArrayList<Producto> productos) {
+        this.productos = productos;
+    }
 }

@@ -12,22 +12,24 @@ import java.util.ArrayList;
 
 public class Empleado 
 {
-  private int id;
+    private int id;
   private String nombre;
   private String apellido;
   private String direccion;
   private String telefono;
+  private int top_aux;
   private String cargo;
 
     public Empleado() {
     }
 
-    public Empleado(int id, String nombre, String apellido, String direccion, String telefono, String cargo) {
+    public Empleado(int id, String nombre, String apellido, String direccion, String telefono, int top_aux, String cargo) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.top_aux = top_aux;
         this.cargo = cargo;
     }
 
@@ -71,6 +73,14 @@ public class Empleado
         this.telefono = telefono;
     }
 
+    public int getTop_aux() {
+        return top_aux;
+    }
+
+    public void setTop_aux(int top_aux) {
+        this.top_aux = top_aux;
+    }
+
     public String getCargo() {
         return cargo;
     }
@@ -78,6 +88,4 @@ public class Empleado
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
-  
-  
 }

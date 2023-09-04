@@ -8,6 +8,7 @@ package trendy.accesoadatos;
  *
  * @author MINEDUCYT
  */
-public class EmpleadoDAL {
+public class EmpleadoDAL 
+{
     
 }

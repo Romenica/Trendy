@@ -12,6 +12,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.util.ArrayList;
+import trendy.accesoadatos.AdministradorDAL;
+import trendy.appwebs.utils.*;
+import trendy.entidadesdenegocio.*;
+
 /**
  *
  * @author MINEDUCYT
